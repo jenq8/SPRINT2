@@ -62,7 +62,7 @@ def stat_res(ARG):
 def getBedDP(bed_in_path=0, bam_in_path=0, bed_out_path=0, bedtools_path=0):
     this_step1 = subprocess.Popen(' '.join([bedtools_path,'multicov','-bams',bam_in_path,'-bed',bed_in_path,' >',bed_out_path+"_hp"]),shell=True)
     this_step1.wait()
-    this_step2 = subprocess.Popen('| sed -i "s/\b0\b/1/g" '+bed_out_path+"_hp"+' > '+bed_out_path,shell=True)
+    this_step2 = subprocess.Popen('sed -i "s/\b0\b/1/g" '+bed_out_path+"_hp"+' > '+bed_out_path,shell=True)
     this_step2.wait()
     this_step3 = subprocess.Popen('rm '+bed_out_path+"_hp",shell=True)
     this_step3.wait()
